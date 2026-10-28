@@ -1,6 +1,6 @@
 # T-bar row biomechanics (Lever Lab trial)
 
-A 12-second, 1080x1920, 60 fps reel built in Remotion on top of the real plate-loaded
+A 15-second, 1080x1920, 60 fps reel built in Remotion on top of the real plate-loaded
 T-bar row clip (`../copy_199DDD96-F5D5-4C64-AB68-BE05A66AF8EB.mov`). The original
 footage is only read, never modified.
 
@@ -45,9 +45,11 @@ would sit below the bottom of the frame.
   bottom of the same rep.
 - This is the machine's external torque. It is not the muscular demand on the back.
   Muscle force also depends on body position, joint moment arms and the length-tension
-  relationship, and none of those are measured here. That's why the outro words it as
-  "feels harder? that's your back working at short length, not the machine", rather than a muscle-force
-  number.
+  relationship, and none of those are measured here. So the outro is a three-step ELI5
+  with no muscle-force number: (1) the bar tilts up, so the plates move closer to the
+  pivot and the machine gets ~14% lighter; (2) at the top the back muscles are fully
+  squeezed, where they're weakest; (3) so the hard part is your back, not the load, and
+  pausing there trains the upper back where it's weakest.
 
 ## How the angle is measured (why not just read it off the image)
 

@@ -46,7 +46,7 @@ const END_SRC = REP_TOPS.filter((t) => t > START_SRC)[2]; // top of rep 3
 const END_REP_BOTTOM = [...REP_BOTTOMS].reverse().find((b) => b < END_SRC)!;
 export const HOOK = 120; // 2.0 s freeze
 const PLAY = END_SRC - START_SRC;
-const OUTRO = 150;
+const OUTRO = 330; // long enough to read the three ELI5 steps
 export const TOTAL_FRAMES = HOOK + PLAY + OUTRO;
 const OUTRO_AT = HOOK + PLAY;
 
@@ -486,36 +486,66 @@ export const TbarRow: React.FC<TbarRowProps> = ({ graphicsOnly, blackBackground 
         </svg>
       </AbsoluteFill>
 
-      {/* ---------------- outro answer ---------------- */}
-      <AbsoluteFill style={{ padding: "190px 80px 0", opacity: outroIn }}>
-        <div style={{ fontFamily: inter, fontWeight: 700, fontSize: 44, letterSpacing: "0.06em", color: WHITE }}>
-          AT THE TOP, MACHINE TORQUE
-        </div>
-        <div
+      {/* ---------------- outro: ELI5 ---------------- */}
+      {graphicsOnly ? null : (
+        <AbsoluteFill
           style={{
-            fontFamily: mono,
-            fontWeight: 700,
-            fontSize: 168,
-            lineHeight: 1.05,
-            letterSpacing: "-0.05em",
-            color: CYAN,
-            textShadow: `0 0 28px ${CYAN}66`,
-            translate: `0px ${interpolate(outroIn, [0, 1], [24, 0])}px`,
+            opacity: outroIn,
+            background: "linear-gradient(180deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0) 56%)",
           }}
-        >
-          −{Math.round(drop * 100)}%
+        />
+      )}
+      <AbsoluteFill style={{ padding: "180px 80px 0", opacity: outroIn }}>
+        <div style={{ fontFamily: inter, fontWeight: 800, fontSize: 56, lineHeight: 1.05, color: WHITE, whiteSpace: "nowrap" }}>
+          WHY THE TOP <span style={{ color: YELLOW }}>FEELS</span> SO HEAVY
         </div>
-        <div style={{ fontFamily: inter, fontWeight: 700, fontSize: 32, letterSpacing: "0.12em", color: CYAN, marginTop: -4 }}>
-          VS THE BOTTOM OF THE SAME REP
-        </div>
-        <div style={{ fontFamily: inter, fontWeight: 500, fontSize: 42, lineHeight: 1.3, color: "rgba(255,255,255,0.9)", marginTop: 10, maxWidth: 900 }}>
-          The moment arm shrinks as the lever rises.
-          <br />
-          <span style={{ color: YELLOW }}>Feels harder?</span> That&apos;s your back working at short length, not the machine.
-        </div>
-        <div style={{ fontFamily: inter, fontWeight: 500, fontSize: 24, lineHeight: 1.35, color: "rgba(255,255,255,0.55)", marginTop: 22, maxWidth: 880 }}>
-          Lever angle measured from video (±4°). Torque = plates + lever about the machine pivot, relative to
-          lever horizontal; not muscle force.
+        {[
+          {
+            at: OUTRO_AT + 30,
+            body: (
+              <>
+                The bar tilts up, so the plates move closer to the pivot. The machine actually gets{" "}
+                <span style={{ color: CYAN, fontWeight: 800, whiteSpace: "nowrap" }}>{Math.round(drop * 100)}% lighter</span>.
+              </>
+            ),
+          },
+          {
+            at: OUTRO_AT + 100,
+            body: (
+              <>
+                But at the top your back muscles are fully squeezed, and a squeezed muscle is at its{" "}
+                <span style={{ color: YELLOW }}>weakest</span>.
+              </>
+            ),
+          },
+          {
+            at: OUTRO_AT + 170,
+            body: (
+              <>
+                So the hard part is your back, not the load. Pause and squeeze there to train your upper back where it&apos;s weakest.
+              </>
+            ),
+          },
+        ].map((step, k) => (
+          <div
+            key={k}
+            style={{
+              display: "flex",
+              gap: 22,
+              marginTop: 30,
+              opacity: ramp(fr, step.at, step.at + 16),
+              translate: `0px ${interpolate(ramp(fr, step.at, step.at + 20), [0, 1], [24, 0])}px`,
+            }}
+          >
+            <div style={{ fontFamily: mono, fontWeight: 700, fontSize: 40, color: CYAN, lineHeight: 1.3 }}>{k + 1}</div>
+            <div style={{ fontFamily: inter, fontWeight: 600, fontSize: 40, lineHeight: 1.3, color: WHITE, maxWidth: 850 }}>
+              {step.body}
+            </div>
+          </div>
+        ))}
+        <div style={{ fontFamily: inter, fontWeight: 500, fontSize: 22, lineHeight: 1.35, color: "rgba(255,255,255,0.5)", marginTop: 26, maxWidth: 880 }}>
+          Lever angle measured from video (±4°). Torque = plates + lever about the machine pivot, top vs bottom of
+          the same rep; not muscle force.
         </div>
       </AbsoluteFill>
 
