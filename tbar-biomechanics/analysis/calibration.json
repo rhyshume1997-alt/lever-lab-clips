@@ -1,0 +1,34 @@
+{
+  "_readme": "Manual calibration for the T-bar row clip. All pixel values are in SOURCE pixels (480x854). Edit, then re-run analysis/run.sh.",
+
+  "source": "../../copy_199DDD96-F5D5-4C64-AB68-BE05A66AF8EB.mov",
+  "sourceWidth": 480,
+  "sourceHeight": 854,
+  "fps": 60,
+
+  "_pivot": "Centre of the lever's bearing housing beside the footplate (fixed in every frame). Main thing to adjust if the overlay pivot looks off.",
+  "pivot": [364, 700],
+
+  "_hubAnchors": "Hand-verified positions of the plate-face hub (where the horn leaves the outer plate). frame -> [x, y]. Tracking is seeded from these.",
+  "hubAnchors": { "156": [28, 672], "216": [113, 478] },
+
+  "_templateBankFrames": "Frames whose (verified) hub appearance forms the drift-free template bank.",
+  "templateBankFrames": [0, 270, 3],
+
+  "_plateEllipses": "Plate-face rim ellipses fitted with analysis/fit_ellipse.py: [frame, minor/major ratio, minor-axis angle in degrees (image coords)]. The plate face is perpendicular to the lever, so these fix the lever's 3D direction.",
+  "plateEllipses": [
+    [156, 0.633, 8.1],
+    [168, 0.674, 19.7],
+    [216, 0.451, 45.7],
+    [412, 0.465, 46.0],
+    [614, 0.442, 42.5]
+  ],
+
+  "_horizonY": "Image row of the horizon at the image centre, from floor-tile vanishing points (+/- 25 px). Constrains camera pitch.",
+  "horizonY": 445,
+
+  "_assumeZeroRoll": "Camera roll assumed 0 (rear upright of machine measures 0.7 deg from vertical).",
+
+  "_plateStackFraction": "Plate-stack centre as a fraction of pivot->outer-plate-face distance (two plates, ~5 cm half-stack on a ~1.2-1.4 m lever).",
+  "plateStackFraction": 0.96
+}
