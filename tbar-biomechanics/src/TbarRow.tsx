@@ -511,7 +511,7 @@ export const TbarRow: React.FC<TbarRowProps> = ({ graphicsOnly, blackBackground 
         <div style={{ fontFamily: inter, fontWeight: 500, fontSize: 42, lineHeight: 1.3, color: "rgba(255,255,255,0.9)", marginTop: 10, maxWidth: 900 }}>
           The moment arm shrinks as the lever rises.
           <br />
-          <span style={{ color: YELLOW }}>Feels harder?</span> That&apos;s your back working at short length — not the machine.
+          <span style={{ color: YELLOW }}>Feels harder?</span> That&apos;s your back working at short length, not the machine.
         </div>
         <div style={{ fontFamily: inter, fontWeight: 500, fontSize: 24, lineHeight: 1.35, color: "rgba(255,255,255,0.55)", marginTop: 22, maxWidth: 880 }}>
           Lever angle measured from video (±4°). Torque = plates + lever about the machine pivot, relative to

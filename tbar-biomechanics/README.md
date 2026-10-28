@@ -46,7 +46,7 @@ would sit below the bottom of the frame.
 - This is the machine's external torque. It is not the muscular demand on the back.
   Muscle force also depends on body position, joint moment arms and the length-tension
   relationship, and none of those are measured here. That's why the outro words it as
-  "feels harder? that's your back working at short length", rather than a muscle-force
+  "feels harder? that's your back working at short length, not the machine", rather than a muscle-force
   number.
 
 ## How the angle is measured (why not just read it off the image)
