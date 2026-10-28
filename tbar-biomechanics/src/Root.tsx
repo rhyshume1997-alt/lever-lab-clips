@@ -1,10 +1,12 @@
 import { Composition } from "remotion";
 import { OUT_H, OUT_W } from "./geometry";
+import { COMPARE_FRAMES, Compare } from "./Compare";
 import { TOTAL_FRAMES, TbarRow } from "./TbarRow";
 
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      <Composition id="TbarCompare" component={Compare} durationInFrames={COMPARE_FRAMES} fps={60} width={OUT_W} height={OUT_H} />
       <Composition
         id="TbarRow"
         component={TbarRow}

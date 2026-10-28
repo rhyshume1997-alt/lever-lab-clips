@@ -1,3 +1,24 @@
+# Lever vs rail T-bar row comparison (current deliverable)
+
+**Video: [`output/tbar-row-lever-vs-rail_1080x1920_60fps.mp4`](output/)** (Remotion composition `TbarCompare`, code in `src/Compare.tsx`).
+It's about 25 s, with no audio and no captions, ready for voiceover and captions in CapCut.
+
+| Section | Clip | What the overlays show |
+| --- | --- | --- |
+| 1. Lever (about 8.6 s) | `copy_199DDD96...mov` | Pivot, plates, curved path (thicker where the machine pushes back harder), gravity, live moment arm, dashed ghost of the longest arm |
+| 2. Rail (about 10.8 s) | `copy_932AC2E1...mov` | Fixed straight rail, plates, straight path (even thickness), gravity, cyan arrow = the share of gravity along the rail |
+| 3. Side by side (about 5.5 s) | both | Each machine with a resistance bar, relative to its own heaviest point |
+
+**Mechanisms (measured, not assumed)**
+- **Lever:** the plates rotate about a fixed pivot (bearing beside the footplate). The lever angle comes from a camera model fitted to the tracking (see below): about 12-16 degrees at the bottom and 32-38 degrees at the top. The gravitational moment is about `m*g*L*cos(theta)`, so the moment arm, and with it the force needed at the handles along their arc, is about 15-18% smaller at the top than at the bottom.
+- **Rail:** the handles, carriage and plates form one rigid frame sliding along a fixed rail. Over 127 px of travel, the tracked path deviates from a straight line by 0.2 px RMS. A straight, fixed incline means the gravity component along the rail is the same at every point, so the static resistance profile is flat.
+- **What isn't claimed:** no absolute forces or torques (plate, carriage and lever masses are unknown), and no joint moments or muscle demands. The bars ignore friction, the bottom bumper springs, and inertia (the rail lifts are fast). The cyan arrow length uses the rail's image angle, so it's illustrative.
+
+**Rebuild:** `./prepare-footage.sh`, then `python3 analysis/track_rail.py` (rail tracking), then
+`npx remotion render TbarCompare output/tbar-row-lever-vs-rail_1080x1920_60fps.mp4 --codec=h264 --crf=16 --x264-preset=slow --image-format=png --muted`.
+
+---
+
 # T-bar row biomechanics (Lever Lab trial)
 
 A 15-second, 1080x1920, 60 fps reel built in Remotion on top of the real plate-loaded
